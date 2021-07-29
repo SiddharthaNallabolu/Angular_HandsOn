@@ -1,0 +1,34 @@
+<form [formGroup]="empForm">
+    <div>
+        <h3>Edit Employee (Reactive)</h3>
+    </div>
+    <div>
+        <label for="employee.Name"><strong>Name</strong></label><br>
+        <input type="text" formControlName="name"><br>
+        <div *ngIf="name?.touched && !name?.valid" class="error">
+            <p *ngIf="name?.errors?.required">Name is required</p>
+            <p *ngIf="name?.errors?.minlength">Name sholud be of minimum of {{name?.errors?.minlength.requiredLength}}
+                charecters</p>
+            <p *ngIf="name?.errors?.maxlength">Name sholud be of maximum of {{name?.errors?.maxlength.requiredLength}}
+                charecters </p>
+        </div>
+    </div>
+    <div>
+        <br>
+        <label for="employee.Salary"><strong>Salary</strong></label><br>
+        <input type="number" formControlName="salary"><br>
+        <div *ngIf="salary?.touched && !salary?.valid" class="error">
+            <p *ngIf="salary?.errors?.required">Salary is required</p>
+        </div>
+    </div>
+    <div>
+        <br>
+        <label for="employee.Department"><strong>Department</strong></label><br>
+        <select formControlName="department">
+            <option *ngFor="let department of departments" [ngValue]="department"
+                [selected]="department.Id === employee.Department.Id">
+                {{department.Name}}
+            </option>
+        </select>
+    </div>
+</form>

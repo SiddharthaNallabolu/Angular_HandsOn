@@ -1,0 +1,56 @@
+<h3>Users</h3>
+<button (click)="onClick()">Create User</button>
+<form *ngIf="create" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+    <div>
+        <br>
+        <label for="user.first_name"><strong>First Name</strong></label><br>
+        <input required ngModel name="FirstName" id="FirstName" #FirstName="ngModel" type="text">
+        <div class="alert" *ngIf="FirstName.touched && !FirstName.valid">
+            <p *ngIf="FirstName.errors?.required">First Name is required</p>
+        </div>
+    </div>
+    <div>
+        <br>
+        <label for="user.last_name"><strong>Last Name</strong></label><br>
+        <input required ngModel name="LastName" id="LastName" #LastName="ngModel" type="text">
+        <div class="alert" *ngIf="LastName.touched && !LastName.valid">
+            <p *ngIf="LastName.errors?.required">Last Name is required</p>
+        </div>
+    </div>
+    <div>
+        <br>
+        <label for="user.email"><strong>Email</strong></label><br>
+        <input required ngModel name="Email" id="Email" #Email="ngModel" type="text">
+        <div class="alert" *ngIf="Email.touched && !Email.valid">
+            <p *ngIf="Email.errors?.required">Email is required</p>
+        </div>
+    </div>
+    <div>
+        <br>
+        <label for="user.avatar"><strong>Image Url</strong></label><br>
+        <input required ngModel name="ImageUrl" id="ImageUrl" #ImageUrl="ngModel" type="text">
+        <div class="alert" *ngIf="ImageUrl.touched && !ImageUrl.valid">
+            <p *ngIf="ImageUrl.errors?.required">Image Url is required</p>
+        </div>
+    </div>
+    <br>
+    <button type="submit" [disabled]="!userForm.valid">Create</button>
+</form>
+<div class="container">
+    <div class="row" *ngFor="let i of response.data">
+        <p style="float: left;">
+            <strong>{{i.first_name}} , {{i.last_name}}</strong><br>
+            {{i.email}}<br>
+            <br>
+            <button (click)="onDelete(i)">Delete</button>
+        </p>
+        <img style="padding:5px; float: right;" src="{{i.avatar}}" alt="image">
+
+    </div>
+</div>
+
+<!-- id: number,
+    email: string,
+    first_name: string,
+    last_name: string,
+    avatar: string -->

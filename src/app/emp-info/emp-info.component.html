@@ -1,0 +1,25 @@
+<strong>Edit Specific Employee</strong>
+<br>
+<form #empForm="ngForm" (ngSubmit)="onSubmit(empForm)">
+    <div>
+        <br>
+        <label for="employee.Name"><strong>Name</strong></label><br>
+        <input required minlength="2" maxlength="10" ngModel name="Name" id="Name" #Name="ngModel" type="text"
+            [(ngModel)]="employee.Name">
+        <div class="alert" *ngIf="Name.touched && !Name.valid">
+            <div *ngIf="Name.errors?.required">Name is required</div>
+            <div *ngIf="Name.errors?.minlength">Name must be at least {{
+                Name.errors?.minlength.requiredLength }} charecters long.</div>
+        </div>
+    </div>
+    <div>
+        <br>
+        <label for="employee.Salary"><strong>Salary</strong></label><br>
+        <input required ngModel name="Salary" id="Salary" #Salary="ngModel" type="number" [(ngModel)]="employee.Salary">
+        <div class="alert" *ngIf="Salary.touched && !Salary.valid">
+            <div *ngIf="Salary.errors?.required">Salary is required</div>
+        </div>
+    </div>
+    <br>
+    <button type="submit" [disabled]="!empForm.valid">Save</button>
+</form>

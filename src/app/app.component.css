@@ -1,0 +1,4 @@
+body { font-family: Segoe UI, Arial}
+a:visited { color: blue }
+a { text-decoration: none }
+.active { border-bottom: Solid 1px blue }

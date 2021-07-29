@@ -1,0 +1,32 @@
+<strong>Edit Employee</strong>
+<br>
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <div>
+        <br>
+        <label for="userName"><strong>Username</strong></label><br>
+        <input required minlength="3" maxlength="15" [(ngModel)]="userName" name="Name" id="Name" #Name="ngModel"
+            type="text">
+        <div class="alert" *ngIf="Name.touched && !Name.valid">
+            <div *ngIf="Name.errors?.required">Name is required</div>
+            <div *ngIf="Name.errors?.minlength">Name must be at least {{
+                Name.errors?.minlength.requiredLength }} charecters long.</div>
+            <div *ngIf="Name.errors?.maxlength">Name must be at maximum of {{
+                Name.errors?.maxlength.requiredLength }} charecters long.</div>
+        </div>
+    </div>
+    <div>
+        <br>
+        <label for="password"><strong>Password</strong></label><br>
+        <input required minlength="6" [(ngModel)]="password" ngModel name="Password" id="Password" #Password="ngModel"
+            type="password">
+        <div class="alert" *ngIf="Password.touched && !Password.valid">
+            <div *ngIf="Password.errors?.required">Password is required</div>
+            <div *ngIf="Password.errors?.minlength">Password must be at least {{
+                Password.errors?.minlength.requiredLength }} charecters long.</div>
+
+        </div>
+    </div>
+    <p id="error">{{message}}</p>
+    <br>
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+</form>
